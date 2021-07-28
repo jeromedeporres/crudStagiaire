@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<table class="table table-hover text-center table table-sm">
+	<caption>Liste des Produits</caption>
+		<thead>
+			<tr class="table-success">
+				<th scope="col">Id</th>
+				<th scope="col">Nom</th>
+				<th scope="col">Prix[€]</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for p in produits %}
+				<tr>
+					<th scope="row">{{p.id}}</th>
+					<td>{{p.nom}}</td>
+					<td>{{p.prix}}</td>
+					<td>
+						{# <button data-href="{{ path('produit_delete', {'id': p.id })}}" class="btn btn-danger deleteBtn">
+													Supprimer</button> #}
+
+						<a href="/panier/add" class="btn btn-outline-success addBtnPanier" data-id="{{p.id}}">Ajouter au panier</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	</div>
+	<script src="{{asset('js/script.js')}}"></script>
+{% endblock %}
